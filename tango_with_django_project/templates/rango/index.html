@@ -8,7 +8,26 @@
 
 <body>
   <h1>Rango says...</h1>
-  hello world! <strong>{{ boldmessage }}</strong><br>
+  <h2>Categories</h2>
+  <ul>
+    {% for category in categories %}
+    <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+
+  {% empty %}
+  <strong>There are no categories present.</strong>
+  {% endfor %}
+  </ul>
+  <br>
+  <h2>Most Viewed Pages</h2>
+  <ul>
+      {% for page in mostViewedPages %}
+      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+
+      {% empty %}
+      <strong>There are no most viewed pages.</strong>
+      {% endfor %}
+  </ul>
+  <br>
   <a href="/rango/about">About</a><br>
   <img src="{% static "images/twd.jpg" %}" alt="Tango With Django" />
 </body>
