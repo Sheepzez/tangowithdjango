@@ -15,7 +15,9 @@
             {% endfor %}
         </ul>
         <br>
+        {% if user.is_authenticated %}
         <a href='/rango/category/{{ category_slug }}/add_page/'>Add Page</a>
+        {% endif %}
     {% else %}
         The specified category {{ category_name }} does not exist!
     {% endif %}
