@@ -4,33 +4,47 @@
 {% block title %}Home {% endblock %}
 
 {% block content %}
+<div class="page-header">
     <h1>Rango says... hello
-    {% if user.is_authenticated %}
-     {{ user.username }}!</h1>
-    {% else %}
-     world!</h1>
-    {% endif %}
-  <h2>Categories</h2>
-  <ul>
-    {% for category in categories %}
-    <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
+        {% if user.is_authenticated %}
+        {{ user.username }}!</h1>
+        {% else %}
+        world!</h1>
+        {% endif %}
+    </div>
+    <div class="row placeholders">
+        <div class="col-xs-12 col-sm-6 placeholder">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+            </div>
+    </div>
+            <ul class="list-group">
+                {% for category in categories %}
+                <li class="list-group-item"><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
 
-    {% empty %}
-    <strong>There are no categories present.</strong>
-    {% endfor %}
-  </ul>
-  <br>
-  <h2>Most Viewed Pages</h2>
-  <ul>
-      {% for page in mostViewedPages %}
-      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% empty %}
+                <strong>There are no categories present.</strong>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6 placeholder">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Most Viewed Pages</h3>
+            </div>
+    </div>
+            <ul class="list-group">
+                {% for page in mostViewedPages %}
+                <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
 
-      {% empty %}
-      <strong>There are no most viewed pages.</strong>
-      {% endfor %}
-  </ul>
-  <br>
-  <p>You've visited {{ visits }} time(s).
-  <br>
-  <img src="{% static "images/twd.jpg" %}" alt="Tango With Django" />
-{% endblock %}
+                {% empty %}
+                <strong>There are no most viewed pages.</strong>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <p>You've visited {{ visits }} time(s).
+        <br>
+        <img src="{% static "images/twd.jpg" %}" alt="Tango With Django" />
+        {% endblock %}
