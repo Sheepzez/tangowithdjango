@@ -58,3 +58,6 @@ target/
 
 # Swap Files
 *.swp
+
+# Key Files
+*keys.py

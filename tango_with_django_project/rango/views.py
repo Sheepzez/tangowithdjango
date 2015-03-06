@@ -7,6 +7,10 @@ from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 
 from datetime import datetime
+import json
+import urllib, urllib2
+
+from rango.bing_search import run_query
 
 def index(request):
     args = {}
@@ -134,3 +138,14 @@ def add_page(request, category_name_slug):
 
 def passwordChangeDone(request):
     return render(request, 'registration/passwordchange_complete.html')
+
+def search(request):
+    result_list = []
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = run_query(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list})
