@@ -1,6 +1,11 @@
 import json
 import urllib, urllib2
-from keys import BING_API_KEY
+
+BING_API_KEY = ""
+try:
+    BING_API_KEY = open("rango/keys.txt").readline()[:-1]
+except IOError as e:
+    print "Bing API Key file is missing! Search will not work."
 
 def run_query(search_terms):
     # Specify the base

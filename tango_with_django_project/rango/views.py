@@ -146,6 +146,7 @@ def add_page(request, category_name_slug):
                 page.views = 0
                 page.save()
                 # probably better to use a redirect here.
+                request.method = "GET"
                 return category(request, category_name_slug)
         else:
             print form.errors
@@ -214,7 +215,7 @@ def profile(request):
         userprofile = UserProfile.objects.get(user=user)
     except ObjectDoesNotExist as e:
         print e
-        up = None
+        userprofile = None
     args['user'] = user
     args['userprofile'] = userprofile
     return render(request, 'rango/profile.html', args)

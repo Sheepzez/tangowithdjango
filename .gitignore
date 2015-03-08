@@ -61,4 +61,4 @@ target/
 *.swp
 
 # Key Files
-*keys.py
+*keys*
